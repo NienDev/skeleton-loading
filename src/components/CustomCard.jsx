@@ -20,7 +20,7 @@ const CustomCard = ({
 }) => {
   return (
     <>
-      <Card sx={{ width: "400px" }}>
+      <Card sx={{ width: { xs: "90%", md: "400px" }, m: "auto" }}>
         <CardHeader
           avatar={
             load ? (
