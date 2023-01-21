@@ -1,0 +1,79 @@
+.cut-off-text {
+  --max-lines: 3;
+  --line-height: 1.4;
+  max-height: calc(var(--max-lines) * 1em * var(--line-height));
+  line-height: var(--line-height);
+  overflow: hidden;
+  position: relative;
+}
+
+.cut-off-title {
+  --max-line: 1;
+  --line-height: 1.4;
+  max-height: calc(var(--line-height) * 1em * var(--max-line));
+  line-height: var(--line-height);
+  position: relative;
+  overflow: hidden;
+}
+
+.show-more-title {
+  appearance: none;
+  position: relative;
+  border-radius: 4px;
+  bottom: -10px;
+  color: #8ea7e9;
+  font-weight: bold;
+  cursor: pointer;
+  letter-spacing: 4px;
+}
+
+.show-more-title::before {
+  content: "...";
+}
+
+.show-more-title:checked::before {
+  content: "❌";
+  margin-left: 1rem;
+}
+
+.cut-off-title:has(+ .show-more-title:checked) {
+  max-height: none;
+}
+
+.cut-off-text:has(+ .show-text:not(:checked))::before {
+  content: "";
+  position: absolute;
+  height: calc(1em * var(--line-height));
+  width: 100%;
+  bottom: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, white);
+}
+
+.show-text {
+  appearance: none;
+  position: relative;
+  border: 2px solid #8ea7e9;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 0.4em;
+  margin-top: 1rem;
+}
+
+.show-text:hover {
+  background-color: #8ea7e9;
+}
+.show-text::before {
+  content: "Show more";
+  color: #8ea7e9;
+  transition: all 0.3s ease;
+}
+.show-text:hover::before {
+  color: #fff;
+}
+.show-text:checked::before {
+  content: "Hide";
+}
+.cut-off-text:has(+ .show-text:checked) {
+  max-height: none;
+}
